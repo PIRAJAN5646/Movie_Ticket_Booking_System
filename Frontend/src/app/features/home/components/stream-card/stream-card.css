@@ -1,0 +1,27 @@
+.card {
+  width: 150px;
+  position: relative;
+}
+
+.badge {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  background: blue;
+  color: white;
+  padding: 2px 6px;
+}
+.card {
+  width: 180px;              /* ✅ fixed card width */
+  flex-shrink: 0;            /* prevents shrinking in scroll */
+  border-radius: 10px;
+  overflow: hidden;          /* hides overflow */
+  position: relative;
+}
+
+img {
+  width: 100%;
+  height: 250px;             /* ✅ fixed height */
+  object-fit: cover;         /* keeps image ratio */
+  border-radius: 10px;
+}

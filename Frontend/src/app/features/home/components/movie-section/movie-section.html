@@ -1,0 +1,8 @@
+<h2>{{title}}</h2>
+
+<div class="grid">
+  <app-movie-card 
+    *ngFor="let m of movies"
+    [movie]="m">
+  </app-movie-card>
+</div>

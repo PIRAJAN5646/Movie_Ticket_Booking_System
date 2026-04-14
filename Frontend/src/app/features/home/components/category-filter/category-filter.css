@@ -1,0 +1,17 @@
+.filters {
+  display: flex;
+  gap: 12px;
+  margin: 20px 0;
+}
+
+button {
+  padding: 8px 16px;
+  border-radius: 20px;
+  background: #eee;
+  transition: 0.3s;
+}
+
+.active {
+  background: #ff3b3b;
+  color: white;
+}

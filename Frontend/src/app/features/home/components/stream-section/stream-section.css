@@ -1,0 +1,20 @@
+.scroll {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  padding-bottom: 10px;
+}
+
+.scroll::-webkit-scrollbar {
+  display: none;
+}
+.scroll {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  padding: 10px 0;
+}
+
+.scroll::-webkit-scrollbar {
+  display: none;
+}

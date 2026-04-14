@@ -1,0 +1,21 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 40px;
+  background: white;
+}
+
+input {
+  width: 40%;
+  padding: 10px;
+  border-radius: 20px;
+  border: 1px solid #ddd;
+}
+
+.right button {
+  background: #ff3b3b;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 8px;
+}
