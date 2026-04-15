@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "E:\\vs_source\\Movie_Ticket_Booking_System\\Movie_ticket_bookingAPI\\Movie_ticket_bookingAPI\\Movie_ticket_bookingAPI.csproj": {}
+    "C:\\Users\\ganes\\Documents\\Projects\\Movie_Ticket_Booking_System\\Backend\\Movie_ticket_bookingAPI\\Movie_ticket_bookingAPI.csproj": {}
   },
   "projects": {
-    "E:\\vs_source\\Movie_Ticket_Booking_System\\Movie_ticket_bookingAPI\\Movie_ticket_bookingAPI\\Movie_ticket_bookingAPI.csproj": {
+    "C:\\Users\\ganes\\Documents\\Projects\\Movie_Ticket_Booking_System\\Backend\\Movie_ticket_bookingAPI\\Movie_ticket_bookingAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\vs_source\\Movie_Ticket_Booking_System\\Movie_ticket_bookingAPI\\Movie_ticket_bookingAPI\\Movie_ticket_bookingAPI.csproj",
+        "projectUniqueName": "C:\\Users\\ganes\\Documents\\Projects\\Movie_Ticket_Booking_System\\Backend\\Movie_ticket_bookingAPI\\Movie_ticket_bookingAPI.csproj",
         "projectName": "Movie_ticket_bookingAPI",
-        "projectPath": "E:\\vs_source\\Movie_Ticket_Booking_System\\Movie_ticket_bookingAPI\\Movie_ticket_bookingAPI\\Movie_ticket_bookingAPI.csproj",
-        "packagesPath": "C:\\Users\\rithi\\.nuget\\packages\\",
-        "outputPath": "E:\\vs_source\\Movie_Ticket_Booking_System\\Movie_ticket_bookingAPI\\Movie_ticket_bookingAPI\\obj\\",
+        "projectPath": "C:\\Users\\ganes\\Documents\\Projects\\Movie_Ticket_Booking_System\\Backend\\Movie_ticket_bookingAPI\\Movie_ticket_bookingAPI.csproj",
+        "packagesPath": "C:\\Users\\ganes\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\ganes\\Documents\\Projects\\Movie_Ticket_Booking_System\\Backend\\Movie_ticket_bookingAPI\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\rithi\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\ganes\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -44,12 +44,30 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "10.0.100"
+        "SdkAnalysisLevel": "10.0.200"
       },
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "BCrypt.Net-Next": {
+              "target": "Package",
+              "version": "[4.0.3, )"
+            },
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[8.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.Sqlite": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[6.6.2, )"
@@ -74,7 +92,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.104/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.201/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
