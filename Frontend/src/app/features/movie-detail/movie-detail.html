@@ -1,0 +1,172 @@
+<app-header></app-header>
+
+@if (movie) {
+  <!-- Hero -->
+  <div class="movie-hero" [style.backgroundImage]="'url(' + movie.backdropUrl + ')'">
+    <div class="hero-overlay">
+      <div class="hero-inner">
+        <div class="poster-wrap">
+          @if (movie.badge) {
+            <div class="poster-badge">{{ movie.badge }}</div>
+          }
+          <img [src]="movie.posterUrl" [alt]="movie.title" class="poster-img" />
+        </div>
+
+        <div class="hero-details">
+          <h1>{{ movie.title }}</h1>
+          <div class="hero-meta">
+            <span class="rating-block">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="#FFD700"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              {{ movie.rating }}/10
+            </span>
+            <span class="votes-text">({{ movie.votes }} Votes)</span>
+            <span class="sep">·</span>
+            @for (f of movie.formats; track f) {
+              <span class="format-pill">{{ f }}</span>
+            }
+            @if (movie.pgRating) {
+              <span class="sep">·</span>
+              <span class="pg-pill">{{ movie.pgRating }}</span>
+            }
+          </div>
+          <div class="lang-row">
+            @for (l of movie.languages; track l) {
+              <span class="lang-tag">{{ l }}</span>
+            }
+          </div>
+          <div class="genre-row">
+            @for (g of movie.genres; track g) {
+              <span class="genre-chip">{{ g }}</span>
+            }
+          </div>
+          <div class="hero-cta">
+            <a [routerLink]="['/movie', movie.id, 'showtimes']" class="cta-book">Book Tickets</a>
+            <button class="cta-icon" aria-label="Wishlist">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+            </button>
+            <button class="cta-icon" aria-label="Share">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Body -->
+  <div class="movie-body">
+    <div class="body-main">
+
+      <!-- About -->
+      <section class="section-block">
+        <h2 class="block-title">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#e50914" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+          About the movie
+        </h2>
+        <p class="about-text">{{ movie.description }}</p>
+      </section>
+
+      <!-- Cast -->
+      <section class="section-block">
+        <h2 class="block-title">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#e50914" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87m-4-12a4 4 0 0 1 0 7.75"/></svg>
+          Cast
+        </h2>
+        <div class="cast-row">
+          @for (c of movie.cast; track c.name) {
+            <div class="cast-card">
+              <img [src]="c.img" [alt]="c.name" class="cast-img" />
+              <p class="cast-name">{{ c.name }}</p>
+              <p class="cast-role">{{ c.role }}</p>
+            </div>
+          }
+        </div>
+        <button class="view-all-cast">› View All</button>
+      </section>
+
+      <!-- Crew -->
+      <section class="section-block">
+        <h2 class="block-title">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#e50914" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          Crew
+        </h2>
+        <div class="crew-grid">
+          <div class="crew-item">
+            <p class="crew-label">DIRECTOR</p>
+            <p class="crew-value">{{ movie.crew.director }}</p>
+          </div>
+          <div class="crew-item">
+            <p class="crew-label">PRODUCER</p>
+            <p class="crew-value">{{ movie.crew.producer }}</p>
+          </div>
+          <div class="crew-item">
+            <p class="crew-label">MUSIC</p>
+            <p class="crew-value">{{ movie.crew.music }}</p>
+          </div>
+          <div class="crew-item">
+            <p class="crew-label">WRITER</p>
+            <p class="crew-value">{{ movie.crew.writer }}</p>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Sidebar -->
+    <aside class="body-sidebar">
+      <div class="sidebar-card">
+        <h3 class="sidebar-title">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#e50914" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+          Key Information
+        </h3>
+
+        <div class="info-item">
+          <div class="info-label">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#888" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            DURATION
+          </div>
+          <div class="info-value">{{ movie.duration }}</div>
+        </div>
+
+        <div class="info-item">
+          <div class="info-label">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#888" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            RELEASE DATE
+          </div>
+          <div class="info-value">{{ movie.releaseDate }}</div>
+        </div>
+
+        <div class="info-item">
+          <div class="info-label">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#888" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+            LANGUAGES
+          </div>
+          <div class="info-value">{{ movie.languages.join(', ') }}</div>
+        </div>
+      </div>
+
+      <!-- Similar movies -->
+      <div class="sidebar-card">
+        <h3 class="sidebar-title-sm">You might also like</h3>
+        <div class="similar-row">
+          @for (s of movie.similar; track s.id) {
+            <a [routerLink]="['/movie', s.id]" class="similar-img-link">
+              <img [src]="s.imageUrl" class="similar-img" alt="Similar movie" />
+            </a>
+          }
+        </div>
+      </div>
+
+      <!-- Offer -->
+      <div class="sidebar-offer">
+        <div class="offer-label">SPECIAL OFFER</div>
+        <h4>Get 20% Off with CinePass!</h4>
+        <p>Book with your CinePass membership and save instantly on this showtime.</p>
+        <a href="#" class="offer-link">Learn More</a>
+      </div>
+
+      <a [routerLink]="['/movie', movie.id, 'showtimes']" class="book-big-btn">Book Tickets</a>
+    </aside>
+  </div>
+}
+
+<app-footer></app-footer>

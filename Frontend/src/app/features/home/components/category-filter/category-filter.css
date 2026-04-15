@@ -1,17 +1,28 @@
-.filters {
+.category-filter {
   display: flex;
-  gap: 12px;
-  margin: 20px 0;
+  gap: 8px;
+  padding: 20px 0 4px;
+  overflow-x: auto;
+  scrollbar-width: none;
 }
+.category-filter::-webkit-scrollbar { display: none; }
 
-button {
-  padding: 8px 16px;
+.cat-btn {
+  flex-shrink: 0;
+  padding: 7px 18px;
   border-radius: 20px;
-  background: #eee;
-  transition: 0.3s;
+  border: 1.5px solid #e0e0e0;
+  background: #fff;
+  color: #555;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
 }
-
-.active {
-  background: #ff3b3b;
-  color: white;
+.cat-btn:hover { border-color: #e50914; color: #e50914; }
+.cat-btn.active {
+  background: #e50914;
+  color: #fff;
+  border-color: #e50914;
+  font-weight: 600;
 }

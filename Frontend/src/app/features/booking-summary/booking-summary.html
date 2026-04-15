@@ -1,0 +1,133 @@
+<app-header></app-header>
+
+<div class="summary-page">
+  <!-- Step Indicator -->
+  <div class="steps-bar">
+    @for (step of steps; track step.num) {
+      <div class="step" [class.step-done]="step.num < currentStep" [class.step-active]="step.num === currentStep">
+        <div class="step-circle">{{ step.num }}</div>
+        <span class="step-label">{{ step.label }}</span>
+      </div>
+      @if (step.num < steps.length) {
+        <div class="step-line" [class.line-done]="step.num < currentStep"></div>
+      }
+    }
+  </div>
+
+  <h1 class="page-title">Booking Summary</h1>
+
+  <div class="summary-container">
+    <!-- Movie Card -->
+    <div class="summary-movie-card">
+      <img [src]="booking.movie.imageUrl" [alt]="booking.movie.title" class="movie-poster" />
+      <div class="movie-info">
+        <div class="movie-top">
+          <h2 class="movie-title">{{ booking.movie.title }}</h2>
+          <span class="pg-badge">{{ booking.movie.pgRating }}</span>
+        </div>
+        <div class="movie-sub">
+          <span>{{ booking.movie.language }}</span>
+          <span class="dot-sep">·</span>
+          <span>{{ booking.movie.format }}</span>
+        </div>
+        <div class="genre-tags">
+          @for (g of booking.movie.genres; track g) {
+            <span class="genre-tag">{{ g }}</span>
+          }
+        </div>
+      </div>
+    </div>
+
+    <!-- Show Details -->
+    <div class="show-details">
+      <div class="detail-block">
+        <div class="detail-label">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#e50914" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          DATE
+        </div>
+        <div class="detail-value">{{ booking.date }}</div>
+      </div>
+      <div class="detail-block">
+        <div class="detail-label">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#e50914" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          TIME
+        </div>
+        <div class="detail-value">{{ booking.time }}</div>
+      </div>
+      <div class="detail-block">
+        <div class="detail-label">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#e50914" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          VENUE
+        </div>
+        <div class="detail-value">{{ booking.venue }}</div>
+      </div>
+    </div>
+
+    <!-- Selected Seats -->
+    <div class="seats-block">
+      <div class="seats-header">
+        <div class="seats-label">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 3v4M8 3v4"/></svg>
+          SELECTED SEATS
+        </div>
+        <button (click)="changeSeat()" class="change-link">Change Seats</button>
+      </div>
+      <div class="seats-value">{{ booking.seats }} ({{ booking.screen }})</div>
+    </div>
+
+    <!-- Order Details -->
+    <div class="order-details">
+      <div class="order-header">ORDER DETAILS</div>
+      <div class="order-row">
+        <span>Tickets (x{{ booking.ticketCount }})</span>
+        <span>₹{{ booking.ticketPrice }}</span>
+      </div>
+      <div class="order-row">
+        <span>Convenience Fees</span>
+        <span>₹{{ booking.convenienceFee }}</span>
+      </div>
+      <div class="order-row">
+        <span>Integrated GST (18%)</span>
+        <span>₹{{ booking.gst }}</span>
+      </div>
+      <div class="order-total">
+        <span>Amount Payable</span>
+        <span class="total-amount">₹{{ totalAmount }}</span>
+      </div>
+    </div>
+
+    <!-- Consent -->
+    <div class="consent-box">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#e50914" stroke-width="2" style="flex-shrink:0"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      <p>By proceeding, I express my consent to complete this transaction. I agree to the terms and conditions and understand that tickets once booked cannot be exchanged, cancelled, or refunded.</p>
+    </div>
+
+    @if (bookingError()) {
+      <div class="error-msg">⚠️ {{ bookingError() }}</div>
+    }
+
+    <!-- Pay Button -->
+    <button class="pay-btn" (click)="proceedToPay()" [disabled]="isProcessing()">
+      @if (isProcessing()) {
+        Processing...
+      } @else {
+        Proceed to Pay &nbsp;|&nbsp; ₹{{ totalAmount }}
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+      }
+    </button>
+
+    <!-- Payment Icons -->
+    <div class="payment-icons">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#aaa" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+      <span class="secure-text">SECURE PAYMENT</span>
+      <span class="payment-brand visa">VISA</span>
+      <span class="payment-brand mc">MC</span>
+    </div>
+
+    <div class="help-link">
+      Need help? <a href="#">Contact Customer Support</a>
+    </div>
+  </div>
+</div>
+
+<app-footer></app-footer>

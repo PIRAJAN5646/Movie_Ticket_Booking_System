@@ -1,0 +1,245 @@
+.confirmation-page {
+  min-height: calc(100vh - 120px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #fff5f5 0%, #fff 60%);
+  padding: 2rem 1rem;
+}
+
+.confirmation-card {
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 8px 40px rgba(227, 30, 36, 0.1);
+  padding: 3rem 2.5rem;
+  max-width: 520px;
+  width: 100%;
+  text-align: center;
+  animation: slideUp 0.5s ease;
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.success-icon {
+  margin: 0 auto 1.5rem;
+  animation: popIn 0.6s ease 0.1s both;
+}
+
+@keyframes popIn {
+  0% { transform: scale(0); opacity: 0; }
+  70% { transform: scale(1.2); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.success-icon svg {
+  width: 80px;
+  height: 80px;
+}
+
+.success-title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 0 0 0.5rem;
+}
+
+.success-subtitle {
+  color: #6b7280;
+  margin: 0 0 2rem;
+  font-size: 1rem;
+}
+
+.ref-badge {
+  background: #fff5f5;
+  border: 1.5px dashed #e31e24;
+  border-radius: 12px;
+  padding: 1rem 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.ref-label {
+  display: block;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #9ca3af;
+  margin-bottom: 0.5rem;
+}
+
+.ref-code {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #e31e24;
+  letter-spacing: 0.1em;
+}
+
+.booking-info {
+  background: #f9fafb;
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  text-align: left;
+}
+
+.movie-row {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+  align-items: center;
+}
+
+.movie-thumb {
+  width: 56px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.movie-meta h2 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 0 0 0.25rem;
+}
+
+.movie-meta p {
+  font-size: 0.85rem;
+  color: #6b7280;
+}
+
+.detail-grid {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.detail-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.detail-item:last-child { border-bottom: none; }
+
+.detail-label {
+  font-size: 0.82rem;
+  color: #6b7280;
+}
+
+.detail-val {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  text-align: right;
+}
+
+.detail-val.amount {
+  color: #e31e24;
+  font-size: 1rem;
+}
+
+.booking-info.generic {
+  text-align: center;
+}
+
+.generic-msg {
+  font-size: 1rem;
+  color: #374151;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+.generic-note {
+  font-size: 0.875rem;
+  color: #9ca3af;
+}
+
+.qr-placeholder {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.qr-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.qr-icon {
+  width: 100px;
+  height: 100px;
+}
+
+.qr-label {
+  font-size: 0.75rem;
+  color: #9ca3af;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.btn-primary {
+  background: #e31e24;
+  color: #fff;
+  border: none;
+  padding: 0.875rem 2rem;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-primary:hover {
+  background: #c41920;
+  transform: translateY(-1px);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: #e31e24;
+  border: 2px solid #e31e24;
+  padding: 0.875rem 2rem;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+.btn-secondary:hover {
+  background: #fff5f5;
+}
+
+.loading-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 3rem;
+}
+
+.spinner {
+  width: 48px;
+  height: 48px;
+  border: 4px solid #f3f4f6;
+  border-top-color: #e31e24;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}

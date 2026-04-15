@@ -1,5 +1,15 @@
-<div class="card">
-  <div class="badge">NEW</div>
-  <img src="https://picsum.photos/200/300" />
-  <button>Watch Now</button>
+<div class="stream-card">
+  <div class="img-wrap">
+    <img [src]="stream?.imageUrl" [alt]="stream?.title" loading="lazy" />
+    @if (stream?.badge) {
+      <span class="stream-badge">{{ stream.badge }}</span>
+    }
+    <div class="stream-overlay">
+      <span class="play-btn">▶</span>
+    </div>
+  </div>
+  <div class="stream-info">
+    <p class="stream-title">{{ stream?.title }}</p>
+    <p class="stream-platform">{{ stream?.platform }}</p>
+  </div>
 </div>

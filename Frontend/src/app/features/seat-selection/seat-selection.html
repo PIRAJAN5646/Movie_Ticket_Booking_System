@@ -1,0 +1,146 @@
+<app-header></app-header>
+
+<div class="seat-page">
+  <!-- Breadcrumb Header -->
+  <div class="breadcrumb-bar">
+    <a [routerLink]="['/movie', movieId(), 'showtimes']" class="back-btn">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+    </a>
+    <div class="bread-info">
+      <h2>{{ movieTitle }}</h2>
+      <p class="bread-meta">{{ theatreName }} | {{ showDate }}</p>
+    </div>
+    <div class="bread-badges">
+      <span class="format-badge">{{ format }}</span>
+      <span class="lang-badge">{{ language }}</span>
+    </div>
+  </div>
+
+  <div class="seat-layout">
+    <!-- Seat Grid -->
+    <div class="seat-grid-panel">
+      <!-- Legend -->
+      <div class="legend">
+        <span class="legend-item">
+          <svg width="18" height="14" viewBox="0 0 20 16" fill="#22c55e"><rect x="0" y="4" width="20" height="12" rx="3"/><rect x="2" y="0" width="4" height="6" rx="1"/><rect x="14" y="0" width="4" height="6" rx="1"/></svg>
+          AVAILABLE
+        </span>
+        <span class="legend-item">
+          <svg width="18" height="14" viewBox="0 0 20 16" fill="#ddd"><rect x="0" y="4" width="20" height="12" rx="3"/><rect x="2" y="0" width="4" height="6" rx="1"/><rect x="14" y="0" width="4" height="6" rx="1"/></svg>
+          SOLD
+        </span>
+        <span class="legend-item">
+          <svg width="18" height="14" viewBox="0 0 20 16" fill="#f59e0b"><rect x="0" y="4" width="20" height="12" rx="3"/><rect x="2" y="0" width="4" height="6" rx="1"/><rect x="14" y="0" width="4" height="6" rx="1"/></svg>
+          SELECTED
+        </span>
+      </div>
+
+      <!-- Col Numbers -->
+      <div class="seat-grid">
+        <div class="col-labels">
+          <span></span>
+          @for (col of cols; track col) {
+            <span class="col-label">{{ col }}</span>
+          }
+          <span></span>
+        </div>
+
+        @for (row of seats; track row[0].row; let ri = $index) {
+          <div class="seat-row">
+            <span class="row-label">{{ rows[ri] }}</span>
+            @for (seat of row; track seat.id) {
+              <button
+                class="seat-btn"
+                [class.s-available]="seat.status === 'available'"
+                [class.s-sold]="seat.status === 'sold'"
+                [class.s-selected]="seat.status === 'selected'"
+                [class.s-premium]="seat.type === 'premium'"
+                [disabled]="seat.status === 'sold'"
+                [title]="seat.id + ' — ' + seat.type + ' ₹' + seat.price"
+                (click)="toggleSeat(seat)">
+                <svg viewBox="0 0 20 16" fill="currentColor">
+                  <rect x="0" y="4" width="20" height="12" rx="3"/>
+                  <rect x="2" y="0" width="4" height="6" rx="1"/>
+                  <rect x="14" y="0" width="4" height="6" rx="1"/>
+                </svg>
+              </button>
+            }
+            <span class="row-label">{{ rows[ri] }}</span>
+          </div>
+        }
+      </div>
+
+      <!-- Screen -->
+      <div class="screen-wrap">
+        <div class="screen-line"></div>
+        <p class="screen-label">ALL EYES THIS WAY PLEASE</p>
+      </div>
+
+      <!-- Disclaimer -->
+      <p class="disclaimer">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#aaa" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+        By clicking on "Proceed to Pay", you agree to our Terms of Use and confirm that you have read and understood our Privacy Policy. Please ensure you are selecting the correct showtime and theatre.
+      </p>
+    </div>
+
+    <!-- Booking Summary Sidebar -->
+    <aside class="booking-sidebar">
+      <div class="summary-card">
+        <h3 class="summary-title">Booking Summary</h3>
+        <p class="tickets-count">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#666" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 3v4M8 3v4"/></svg>
+          {{ selectedSeats().length }} Ticket{{ selectedSeats().length !== 1 ? 's' : '' }} Selected
+        </p>
+
+        <!-- Selected Seat Tags -->
+        <div class="seat-tags">
+          @for (s of selectedSeats(); track s.id) {
+            <span class="seat-tag" (click)="removeSelected(s.id)">
+              {{ s.id }} ✕
+            </span>
+          }
+        </div>
+
+        <div class="price-breakdown">
+          <div class="price-row">
+            <span>Ticket Price</span>
+            <span>₹{{ ticketTotal() }}.00</span>
+          </div>
+          <div class="price-row">
+            <span>Fees &amp; Taxes
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#aaa" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+            </span>
+            <span>₹{{ feesTotal() }}.00</span>
+          </div>
+        </div>
+
+        <div class="total-row">
+          <span>Total Amount</span>
+          <span class="total-price">₹{{ grandTotal() }}.00</span>
+        </div>
+
+        <button class="proceed-btn" [disabled]="selectedSeats().length === 0" (click)="proceedToPay()">
+          Proceed to Pay
+        </button>
+
+        <div class="security-note">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#aaa" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          SECURE 128-BIT ENCRYPTION
+        </div>
+      </div>
+
+      <!-- Offer Card -->
+      <div class="offer-card">
+        <div class="offer-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#e50914" stroke-width="2">
+            <rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/>
+          </svg>
+        </div>
+        <div>
+          <p class="offer-title">CineCard Offer Available</p>
+          <p class="offer-desc">Get 20% off with CineBook Premiere Credit Card.</p>
+        </div>
+      </div>
+    </aside>
+  </div>
+</div>

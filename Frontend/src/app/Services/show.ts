@@ -1,30 +1,22 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Show } from '../Models/show';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable({ providedIn: 'root' })
 export class ShowService {
-
-  private apiUrl = 'https://localhost:5001/api/shows';
+  private apiUrl = '/api/shows';
 
   constructor(private http: HttpClient) {}
 
-  // Get shows by movie
-  getShowsByMovie(movieId: number): Observable<Show[]> {
-    return this.http.get<Show[]>(`${this.apiUrl}/bymovie/${movieId}`);
+  getShowsByMovie(movieId: number, date?: string, language?: string, format?: string): Observable<any[]> {
+    const params: any = {};
+    if (date) params.date = date;
+    if (language) params.language = language;
+    if (format) params.format = format;
+    return this.http.get<any[]>(`${this.apiUrl}/bymovie/${movieId}`, { params });
   }
 
-  // Get shows by theatre
-  getShowsByTheatre(theatreId: number): Observable<Show[]> {
-    return this.http.get<Show[]>(`${this.apiUrl}/bytheatre/${theatreId}`);
+  getShowWithSeats(showId: number): Observable<any> {
+    return this.http.get(`${this.apiUrl}/${showId}/seats`);
   }
-
-  // Create new show
-  createShow(show: Show): Observable<Show> {
-    return this.http.post<Show>(this.apiUrl, show);
-  }
-
 }

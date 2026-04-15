@@ -1,8 +1,12 @@
-<h2>{{title}}</h2>
+<section class="movie-section">
+  <div class="section-header">
+    <h2>{{ title }}</h2>
+    <a href="#" class="see-all">See All ›</a>
+  </div>
 
-<div class="grid">
-  <app-movie-card 
-    *ngFor="let m of movies"
-    [movie]="m">
-  </app-movie-card>
-</div>
+  <div class="movies-scroll">
+    @for (m of movies; track m.id) {
+      <app-movie-card [movie]="m"></app-movie-card>
+    }
+  </div>
+</section>

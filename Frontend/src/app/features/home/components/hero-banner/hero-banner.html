@@ -1,10 +1,43 @@
 <div class="hero">
-  <img src="https://images.unsplash.com/photo-1505685296765-3a2736de412f" class="bg">
+  <img [src]="featuredMovie.image" class="bg" [alt]="featuredMovie.title" />
+  <div class="hero-gradient"></div>
 
-  <div class="overlay">
-    <h1>The Celestial Odyssey</h1>
-    <p>Epic journey across galaxies</p>
-    <button class="primary">Book Tickets</button>
-    <button class="secondary">Watch Trailer</button>
+  <div class="hero-content">
+    @if (featuredMovie.badge) {
+      <span class="hero-badge">{{ featuredMovie.badge }}</span>
+    }
+    <h1 class="hero-title">{{ featuredMovie.title }}</h1>
+
+    <div class="hero-meta">
+      <span class="hero-rating">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="#FFD700"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        {{ featuredMovie.rating }}/10
+      </span>
+      <span class="meta-sep">·</span>
+      <span class="hero-votes">{{ featuredMovie.votes }} Votes</span>
+      <span class="meta-sep">·</span>
+      @for (f of featuredMovie.formats; track f) {
+        <span class="format-tag">{{ f }}</span>
+      }
+    </div>
+
+    <div class="hero-genres">
+      @for (g of featuredMovie.genres; track g) {
+        <span class="genre-chip">{{ g }}</span>
+      }
+    </div>
+
+    <p class="hero-desc">{{ featuredMovie.description }}</p>
+
+    <div class="hero-actions">
+      <a [routerLink]="['/movie', featuredMovie.id, 'showtimes']" class="btn-book">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 3v4M8 3v4M2 11h20"/></svg>
+        Book Tickets
+      </a>
+      <a [routerLink]="['/movie', featuredMovie.id]" class="btn-info">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+        More Info
+      </a>
+    </div>
   </div>
 </div>

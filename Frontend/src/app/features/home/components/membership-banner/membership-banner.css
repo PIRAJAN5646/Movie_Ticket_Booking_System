@@ -1,19 +1,70 @@
-.banner {
-  background: linear-gradient(90deg, #ffe6e6, #ffd6d6);
-  padding: 24px;
-  border-radius: 12px;
+.membership-banner {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
+  background: linear-gradient(135deg, #fff5f5 0%, #ffe8e8 100%);
+  border: 1.5px solid #ffd0d0;
+  border-radius: 16px;
+  padding: 28px 32px;
+  margin: 32px 0;
+  gap: 20px;
+  flex-wrap: wrap;
 }
 
-.banner h2 {
-  color: #ff3b3b;
+.banner-left {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  flex: 1;
 }
 
-.banner button {
-  background: #ff3b3b;
-  color: white;
-  padding: 10px 20px;
+.banner-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 14px;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 2px 12px rgba(229,9,20,0.12);
+}
+
+.banner-left h3 {
+  font-size: 18px;
+  font-weight: 700;
+  color: #1a1a2e;
+  margin-bottom: 6px;
+}
+.banner-left p {
+  font-size: 13px;
+  color: #666;
+  margin-bottom: 12px;
+  max-width: 480px;
+}
+
+.member-perks {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.perk {
+  font-size: 12px;
+  font-weight: 600;
+  color: #e50914;
+}
+
+.join-btn {
+  background: #e50914;
+  color: #fff;
+  padding: 12px 28px;
   border-radius: 8px;
+  font-size: 14px;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s;
+  flex-shrink: 0;
 }
+.join-btn:hover { background: #c0070f; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(229,9,20,0.3); }

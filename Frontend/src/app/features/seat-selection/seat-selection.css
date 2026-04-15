@@ -1,0 +1,274 @@
+.seat-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px 40px;
+}
+
+/* Breadcrumb */
+.breadcrumb-bar {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 0;
+  border-bottom: 1px solid #eee;
+  margin-bottom: 24px;
+}
+.back-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  background: #f5f5f5;
+  color: #333;
+  text-decoration: none;
+  flex-shrink: 0;
+  transition: all 0.2s;
+}
+.back-btn:hover { background: #eee; }
+.bread-info { flex: 1; }
+.bread-info h2 { font-size: 18px; font-weight: 700; color: #1a1a2e; margin-bottom: 2px; }
+.bread-meta { font-size: 12px; color: #888; }
+.bread-badges { display: flex; gap: 8px; }
+.format-badge, .lang-badge {
+  border: 1.5px solid #ddd;
+  border-radius: 6px;
+  padding: 4px 10px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #555;
+}
+
+/* Layout */
+.seat-layout {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 28px;
+  align-items: start;
+}
+
+/* Grid Panel */
+.seat-grid-panel {
+  background: #fff;
+  border: 1px solid #eee;
+  border-radius: 16px;
+  padding: 28px;
+}
+
+/* Legend */
+.legend {
+  display: flex;
+  justify-content: center;
+  gap: 28px;
+  margin-bottom: 28px;
+}
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  font-weight: 700;
+  color: #888;
+  letter-spacing: 0.5px;
+}
+
+/* Seat Grid */
+.seat-grid {
+  overflow-x: auto;
+  padding-bottom: 8px;
+}
+.col-labels {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  margin-bottom: 8px;
+}
+.col-label {
+  width: 32px;
+  text-align: center;
+  font-size: 10px;
+  color: #bbb;
+  font-weight: 600;
+}
+
+.seat-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin-bottom: 6px;
+}
+
+.row-label {
+  width: 20px;
+  text-align: center;
+  font-size: 11px;
+  color: #bbb;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+.seat-btn {
+  width: 32px;
+  height: 28px;
+  border: none;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.15s;
+  flex-shrink: 0;
+}
+.seat-btn:hover:not(:disabled) { transform: scale(1.15); }
+.seat-btn:disabled { cursor: not-allowed; opacity: 0.6; }
+
+.seat-btn svg { width: 28px; height: 22px; }
+
+.s-available { color: #22c55e; }
+.s-sold { color: #ddd; }
+.s-selected { color: #f59e0b; }
+.s-premium.s-available { color: #818cf8; }
+
+/* Screen */
+.screen-wrap { text-align: center; margin-top: 24px; margin-bottom: 12px; }
+.screen-line {
+  height: 3px;
+  background: linear-gradient(90deg, transparent, #ddd 20%, #bbb 50%, #ddd 80%, transparent);
+  border-radius: 2px;
+  margin-bottom: 8px;
+}
+.screen-label { font-size: 11px; color: #bbb; letter-spacing: 1px; font-weight: 600; }
+
+/* Disclaimer */
+.disclaimer {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+  font-size: 11px;
+  color: #aaa;
+  line-height: 1.6;
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid #f5f5f5;
+}
+
+/* Booking Sidebar */
+.booking-sidebar { position: sticky; top: 80px; }
+.summary-card {
+  background: #fff;
+  border: 1.5px solid #eee;
+  border-radius: 16px;
+  padding: 22px;
+  margin-bottom: 14px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+}
+.summary-title { font-size: 17px; font-weight: 800; color: #1a1a2e; margin-bottom: 8px; }
+.tickets-count {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: #666;
+  margin-bottom: 14px;
+}
+
+/* Seat Tags */
+.seat-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 16px; min-height: 30px; }
+.seat-tag {
+  background: #fff5f5;
+  border: 1.5px solid #ffd0d0;
+  color: #e50914;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.seat-tag:hover { background: #e50914; color: #fff; border-color: #e50914; }
+
+/* Price Breakdown */
+.price-breakdown { border-top: 1px solid #f5f5f5; padding: 12px 0; margin-bottom: 0; }
+.price-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  color: #555;
+  padding: 6px 0;
+}
+.price-row span:first-child {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.total-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 0;
+  border-top: 1.5px solid #eee;
+  border-bottom: 1.5px solid #eee;
+  margin-bottom: 16px;
+  font-size: 14px;
+  font-weight: 700;
+  color: #1a1a2e;
+}
+.total-price { font-size: 20px; font-weight: 800; color: #e50914; }
+
+.proceed-btn {
+  width: 100%;
+  background: #e50914;
+  color: #fff;
+  padding: 14px;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s;
+  margin-bottom: 12px;
+}
+.proceed-btn:hover:not(:disabled) { background: #c0070f; transform: translateY(-1px); box-shadow: 0 6px 20px rgba(229,9,20,0.3); }
+.proceed-btn:disabled { background: #ddd; color: #999; cursor: not-allowed; }
+
+.security-note {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  font-size: 10px;
+  color: #bbb;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+/* Offer Card */
+.offer-card {
+  background: #fff5f5;
+  border: 1.5px solid #ffd0d0;
+  border-radius: 12px;
+  padding: 14px;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+.offer-icon {
+  width: 36px; height: 36px;
+  background: #fff;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.offer-title { font-size: 12px; font-weight: 700; color: #1a1a2e; margin-bottom: 3px; }
+.offer-desc { font-size: 11px; color: #888; }
+
+@media (max-width: 900px) {
+  .seat-layout { grid-template-columns: 1fr; }
+  .booking-sidebar { position: static; }
+}

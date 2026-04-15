@@ -9,28 +9,33 @@ export interface BookingRequest {
   totalAmount: number;
 }
 
-@Injectable({
-  providedIn: 'root'
-})
-export class BookingService {
+export interface BookingResponse {
+  bookingId: number;
+  referenceCode: string;
+  totalAmount: number;
+  status: string;
+  walletBalance: number;
+}
 
-  private apiUrl = 'https://localhost:5001/api/bookings';
+@Injectable({ providedIn: 'root' })
+export class BookingService {
+  private apiUrl = '/api/bookings';
 
   constructor(private http: HttpClient) {}
 
-  // Create booking
-  CreateBooking(request: BookingRequest): Observable<any> {
-    return this.http.post(this.apiUrl, request);
+  createBooking(request: BookingRequest): Observable<BookingResponse> {
+    return this.http.post<BookingResponse>(this.apiUrl, request);
   }
 
-  // Get booking details
-  GetBooking(id: number): Observable<any> {
+  getBooking(id: number): Observable<any> {
     return this.http.get(`${this.apiUrl}/${id}`);
   }
 
-  // Cancel booking
-  CancelBooking(id: number): Observable<any> {
-    return this.http.delete(`${this.apiUrl}/${id}`);
+  getUserBookings(userId: number): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/user/${userId}`);
   }
 
+  cancelBooking(id: number): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/${id}`);
+  }
 }

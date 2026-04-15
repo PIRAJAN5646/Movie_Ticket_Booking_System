@@ -1,20 +1,33 @@
-.scroll {
-  display: flex;
-  gap: 16px;
-  overflow-x: auto;
-  padding-bottom: 10px;
+.stream-section {
+  padding: 32px 0 16px;
 }
 
-.scroll::-webkit-scrollbar {
-  display: none;
-}
-.scroll {
+.section-header {
   display: flex;
-  gap: 16px;
-  overflow-x: auto;
-  padding: 10px 0;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
 }
+.section-header h2 {
+  font-size: 20px;
+  font-weight: 700;
+  color: #1a1a2e;
+}
+.see-all {
+  font-size: 13px;
+  font-weight: 600;
+  color: #e50914;
+  text-decoration: none;
+}
+.see-all:hover { opacity: 0.75; }
 
-.scroll::-webkit-scrollbar {
-  display: none;
+.stream-scroll {
+  display: flex;
+  gap: 14px;
+  overflow-x: auto;
+  padding-bottom: 12px;
+  scrollbar-width: thin;
+  scrollbar-color: #ddd transparent;
 }
+.stream-scroll::-webkit-scrollbar { height: 4px; }
+.stream-scroll::-webkit-scrollbar-thumb { background: #ddd; border-radius: 4px; }

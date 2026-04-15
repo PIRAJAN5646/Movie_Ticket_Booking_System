@@ -1,5 +1,11 @@
-<h2>The Stream Experience</h2>
-
-<div class="scroll">
-  <app-stream-card *ngFor="let s of streams"></app-stream-card>
-</div>
+<section class="stream-section">
+  <div class="section-header">
+    <h2>The Stream Experience</h2>
+    <a href="#" class="see-all">See All ›</a>
+  </div>
+  <div class="stream-scroll">
+    @for (s of streams; track s.id) {
+      <app-stream-card [stream]="s"></app-stream-card>
+    }
+  </div>
+</section>

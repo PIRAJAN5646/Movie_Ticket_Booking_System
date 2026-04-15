@@ -1,11 +1,26 @@
 <div class="card">
-  <img [src]="movie.imageUrl" />
+  <a [routerLink]="['/movie', movie.id]" class="card-link">
+    <div class="card-img-wrap">
+      <img [src]="movie.imageUrl" [alt]="movie.title" loading="lazy" />
+      <div class="card-overlay">
+        <span class="rating-badge">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="#FFD700"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          {{ movie.rating }}
+        </span>
+        @if (movie.pgRating) {
+          <span class="pg-badge">{{ movie.pgRating }}</span>
+        }
+      </div>
+    </div>
 
-  <div class="info">
-    <h3>{{ movie.title }}</h3>
-    <p>{{ movie.genre }}</p>
-    <span class="rating">⭐ {{ movie.rating }}</span>
-  </div>
+    <div class="card-info">
+      <h3 class="movie-title">{{ movie.title }}</h3>
+      <p class="movie-genre">{{ movie.genre }}</p>
+      @if (movie.votes) {
+        <p class="movie-votes">{{ movie.votes }} Votes</p>
+      }
+    </div>
+  </a>
 
-  <button>Book Tickets</button>
+  <a [routerLink]="['/movie', movie.id, 'showtimes']" class="book-btn">Book Tickets</a>
 </div>

@@ -1,21 +1,301 @@
+/* ============================================================
+   CineBook Header Styles
+   ============================================================ */
+
 .header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: #fff;
+  border-bottom: 1px solid #eee;
+  box-shadow: 0 1px 8px rgba(0,0,0,0.06);
+}
+
+.header-inner {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 0 20px;
+  height: 58px;
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding: 16px 40px;
-  background: white;
+  gap: 18px;
 }
 
-input {
-  width: 40%;
-  padding: 10px;
-  border-radius: 20px;
-  border: 1px solid #ddd;
+/* ---- Logo ---- */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+.logo-icon { display: flex; align-items: center; }
+.logo-text {
+  font-size: 20px;
+  font-weight: 800;
+  color: #e50914;
+  letter-spacing: -0.5px;
 }
 
-.right button {
-  background: #ff3b3b;
-  color: white;
-  padding: 8px 16px;
+/* ---- Search ---- */
+.search-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+  max-width: 380px;
+  background: #f5f5f5;
+  border-radius: 24px;
+  padding: 0 16px;
+  height: 38px;
+  transition: all 0.2s;
+}
+.search-wrap:focus-within {
+  background: #fff;
+  box-shadow: 0 0 0 2px rgba(229, 9, 20, 0.15);
+}
+.search-icon { color: #999; flex-shrink: 0; }
+.search-input {
+  border: none;
+  background: transparent;
+  outline: none;
+  font-size: 13px;
+  font-family: 'Poppins', sans-serif;
+  color: #333;
+  width: 100%;
+}
+.search-input::placeholder { color: #aaa; }
+
+/* ---- Nav ---- */
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.nav-link {
+  font-size: 13px;
+  font-weight: 500;
+  color: #555;
+  padding: 6px 10px;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+.nav-link:hover, .nav-link.active { color: #e50914; background: #ffeef0; }
+
+/* ---- Right section ---- */
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-left: auto;
+  flex-shrink: 0;
+}
+
+/* ---- City selector ---- */
+.city-btn-wrap {
+  position: relative;
+}
+
+.city-btn {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  background: transparent;
+  border: 1.5px solid #e8e8e8;
+  font-size: 13px;
+  font-weight: 500;
+  color: #444;
+  cursor: pointer;
+  padding: 6px 11px;
   border-radius: 8px;
+  font-family: inherit;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+.city-btn:hover { border-color: #ddd; background: #f9f9f9; }
+
+.city-dropdown {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  background: #fff;
+  border: 1px solid #eee;
+  border-radius: 12px;
+  box-shadow: 0 8px 28px rgba(0,0,0,0.12);
+  width: 170px;
+  overflow: hidden;
+  z-index: 9999;
+  animation: dropDown 0.15s ease;
+}
+
+@keyframes dropDown {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.city-option {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  font-size: 13px;
+  cursor: pointer;
+  color: #444;
+  transition: background 0.15s;
+}
+.city-option:hover { background: #ffeef0; color: #e50914; }
+.city-option.active { color: #e50914; font-weight: 600; background: #fff5f5; }
+
+/* ---- Wallet badge ---- */
+.wallet-badge {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  background: linear-gradient(135deg, #fff8e7, #fff3cd);
+  border: 1.5px solid #f5c842;
+  border-radius: 20px;
+  padding: 5px 12px;
+  font-size: 12.5px;
+  font-weight: 700;
+  color: #92700a;
+  white-space: nowrap;
+  cursor: default;
+  transition: transform 0.2s;
+}
+.wallet-badge:hover { transform: scale(1.03); }
+
+/* ---- User section ---- */
+.user-menu-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  position: relative;
+}
+
+.user-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: #fff5f5;
+  border: 1.5px solid #ffd0d2;
+  border-radius: 20px;
+  padding: 5px 12px 5px 6px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+  color: #e50914;
+  font-family: inherit;
+  transition: all 0.2s;
+}
+.user-btn:hover { background: #ffeef0; border-color: #ff9a9a; }
+
+.user-avatar {
+  width: 26px;
+  height: 26px;
+  background: #e50914;
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  flex-shrink: 0;
+}
+
+.user-name {
+  max-width: 80px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.user-dropdown {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  background: #fff;
+  border: 1px solid #eee;
+  border-radius: 14px;
+  box-shadow: 0 10px 32px rgba(0,0,0,0.13);
+  min-width: 200px;
+  overflow: hidden;
+  z-index: 9999;
+  animation: dropDown 0.15s ease;
+}
+
+/* Wallet in dropdown */
+.dropdown-wallet {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 16px;
+  background: linear-gradient(135deg, #fffdf0, #fff9e0);
+}
+
+.dropdown-wallet-label {
+  font-size: 10.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #aaa;
+  margin-bottom: 2px;
+}
+
+.dropdown-wallet-amount {
+  font-size: 17px;
+  font-weight: 800;
+  color: #92700a;
+}
+
+.dropdown-divider { height: 1px; background: #f0f0f0; }
+
+.dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  text-align: left;
+  padding: 11px 16px;
+  font-size: 13.5px;
+  color: #444;
+  text-decoration: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: background 0.15s;
+  font-family: inherit;
+}
+.dropdown-item:hover { background: #f9f9f9; }
+
+.logout-item { color: #e50914; font-weight: 500; }
+.logout-item:hover { background: #fff5f5; }
+
+/* ---- Sign in button ---- */
+.btn-signin {
+  background: #e50914;
+  color: #fff;
+  padding: 8px 22px;
+  border-radius: 8px;
+  font-size: 13.5px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+.btn-signin:hover {
+  background: #c0070f;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(229,9,20,0.3);
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 900px) {
+  .nav { display: none; }
+}
+@media (max-width: 600px) {
+  .search-wrap { max-width: 180px; }
+  .wallet-badge { display: none; }
 }

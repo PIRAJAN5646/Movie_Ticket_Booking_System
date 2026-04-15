@@ -3,38 +3,24 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Movie } from '../Models/movie';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable({ providedIn: 'root' })
 export class MovieService {
-
-  private apiUrl = 'https://localhost:5001/api/movies';
+  private apiUrl = '/api/movies';
 
   constructor(private http: HttpClient) {}
 
-  // Get all movies
-  getMovies(): Observable<Movie[]> {
-    return this.http.get<Movie[]>(this.apiUrl);
+  getMovies(search?: string, genre?: string): Observable<Movie[]> {
+    const params: any = {};
+    if (search) params.search = search;
+    if (genre) params.genre = genre;
+    return this.http.get<Movie[]>(this.apiUrl, { params });
   }
 
-  // Get movie by ID
   getMovie(id: number): Observable<Movie> {
     return this.http.get<Movie>(`${this.apiUrl}/${id}`);
   }
 
-  // Create movie
-  createMovie(movie: Movie): Observable<Movie> {
-    return this.http.post<Movie>(this.apiUrl, movie);
+  getNewArrivals(): Observable<Movie[]> {
+    return this.http.get<Movie[]>(`${this.apiUrl}/new-arrivals`);
   }
-
-  // Update movie
-  updateMovie(id: number, movie: Movie): Observable<any> {
-    return this.http.put(`${this.apiUrl}/${id}`, movie);
-  }
-
-  // Delete movie
-  deleteMovie(id: number): Observable<any> {
-    return this.http.delete(`${this.apiUrl}/${id}`);
-  }
-
 }

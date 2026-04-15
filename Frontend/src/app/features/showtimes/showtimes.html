@@ -1,0 +1,181 @@
+<app-header></app-header>
+
+<div class="showtimes-page">
+  <!-- Movie Header Bar -->
+  <div class="movie-header-bar">
+    <div class="movie-header-inner">
+      <div>
+        <h1 class="movie-name">{{ movieTitle() }}</h1>
+        <div class="movie-meta-tags">
+          @for (tag of movieMeta().split(' · '); track tag) {
+            <span class="meta-tag">{{ tag }}</span>
+          }
+        </div>
+      </div>
+      <button class="filter-btn">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="22" y1="3" x2="2" y2="3"/><line x1="16" y1="9" x2="8" y2="9"/><line x1="6" y1="15" x2="18" y2="15"/>
+        </svg>
+        Filter
+      </button>
+    </div>
+  </div>
+
+  <!-- Date + Filter Bar -->
+  <div class="controls-bar">
+    <div class="controls-inner">
+      <!-- Date Selector -->
+      <div class="date-strip">
+        @for (d of dates; track d.full; let i = $index) {
+          <button class="date-item" [class.selected]="selectedDateIndex() === i" (click)="selectDate(i)">
+            @if (d.label) {
+              <span class="date-today-label">{{ d.label }}</span>
+            }
+            <span class="date-num">{{ d.date }}</span>
+            <span class="date-month">{{ d.month }}</span>
+          </button>
+        }
+      </div>
+
+      <!-- Filters -->
+      <div class="filter-dropdowns">
+        <div class="filter-group">
+          <label>LANGUAGE</label>
+          <select [value]="selectedLanguage()" (change)="selectedLanguage.set($any($event.target).value); loadShows()" class="filter-select">
+            <option>All</option>
+            <option>English</option>
+            <option>Hindi</option>
+            <option>Tamil</option>
+            <option>Telugu</option>
+          </select>
+        </div>
+        <div class="filter-group">
+          <label>FORMAT</label>
+          <select [value]="selectedFormat()" (change)="selectedFormat.set($any($event.target).value); loadShows()" class="filter-select">
+            <option>All</option>
+            <option>IMAX 2D</option>
+            <option>2D</option>
+            <option>3D</option>
+            <option>4DX</option>
+          </select>
+        </div>
+        <div class="filter-group">
+          <label>PRICE</label>
+          <select class="filter-select">
+            <option>0 - 500</option>
+            <option>500 - 1000</option>
+            <option>1000+</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Theatre List -->
+  <div class="theatres-wrap">
+    <div class="theatres-header">
+      <div class="location-info">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#e50914" stroke-width="2">
+          <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>
+        </svg>
+        <span>Theatres near Mumbai</span>
+        <span class="theatre-count">({{ theatres().length }} Available)</span>
+      </div>
+      <a href="#" class="map-link">View on Map ›</a>
+    </div>
+
+    <!-- Loading state -->
+    @if (isLoading()) {
+      <div class="shows-loading">
+        <div class="shows-spinner"></div>
+        <p>Loading showtimes...</p>
+      </div>
+    } @else if (errorMsg()) {
+      <div class="no-shows">
+        <svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="#ccc" stroke-width="1.5">
+          <rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/>
+          <line x1="12" y1="12" x2="12" y2="16"/><line x1="10" y1="14" x2="14" y2="14"/>
+        </svg>
+        <h3>No Shows Found</h3>
+        <p>{{ errorMsg() }}</p>
+        <p class="no-shows-hint">Try selecting a different date or adjusting filters.</p>
+      </div>
+    }
+
+    @for (theatre of theatres(); track theatre.theatreId) {
+
+      <div class="theatre-card">
+        <div class="theatre-top">
+          <div class="theatre-name-block">
+            <button class="heart-btn" aria-label="Favourite">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ccc" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+            </button>
+            <div>
+              <h3 class="theatre-name">{{ theatre.name }}</h3>
+              <p class="theatre-address">{{ theatre.address }}</p>
+            </div>
+          </div>
+          <button class="info-btn" aria-label="Info">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#999" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+          </button>
+        </div>
+
+        <div class="theatre-amenities">
+          @for (a of theatre.amenities; track a) {
+            <span class="amenity">
+              @if (a === 'M Ticket') {
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 3v4M8 3v4"/></svg>
+              }
+              {{ a }}
+            </span>
+          }
+        </div>
+
+        <div class="showtime-row">
+          <div class="availability-labels">
+            <span class="avail-dot avail">Available</span>
+            <span class="avail-dot fast">Filling Fast</span>
+            <span class="avail-dot sold">Sold Out</span>
+          </div>
+          <div class="showtime-btns">
+            @for (st of theatre.showtimes; track st.time) {
+              <button
+                class="showtime-btn"
+                [class.btn-avail]="st.availability === 'Available'"
+                [class.btn-fast]="st.availability === 'Filling Fast'"
+                [class.btn-sold]="st.availability === 'Sold Out'"
+                [disabled]="st.availability === 'Sold Out'"
+                (click)="bookShow(theatre.theatreId, st)">
+                <span class="st-time">{{ st.time }}</span>
+                @if (st.format) {
+                  <span class="st-format">{{ st.format }}</span>
+                }
+              </button>
+            }
+          </div>
+        </div>
+
+        <div class="theatre-footer">
+          <span class="cancellation-info">{{ theatre.cancellationPolicy }}</span>
+        </div>
+      </div>
+    }
+
+    <!-- Corporate Banner -->
+    <div class="corporate-banner">
+      <div class="corporate-left">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#e50914" stroke-width="1.5">
+          <rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/>
+          <line x1="12" y1="12" x2="12" y2="16"/><line x1="10" y1="14" x2="14" y2="14"/>
+        </svg>
+        <div>
+          <h3>Planning a Corporate Outing?</h3>
+          <p>Get exclusive discounts and bulk booking benefits for your team and events.</p>
+        </div>
+      </div>
+      <button class="bulk-btn">Bulk Booking</button>
+    </div>
+  </div>
+</div>
+
+<app-footer></app-footer>

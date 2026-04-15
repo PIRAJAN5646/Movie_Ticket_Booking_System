@@ -1,5 +1,37 @@
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-  gap: 16px;
+.movie-section {
+  padding: 32px 0 16px;
 }
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.section-header h2 {
+  font-size: 20px;
+  font-weight: 700;
+  color: #1a1a2e;
+}
+
+.see-all {
+  font-size: 13px;
+  font-weight: 600;
+  color: #e50914;
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+.see-all:hover { opacity: 0.75; }
+
+.movies-scroll {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  padding-bottom: 12px;
+  scrollbar-width: thin;
+  scrollbar-color: #ddd transparent;
+}
+.movies-scroll::-webkit-scrollbar { height: 4px; }
+.movies-scroll::-webkit-scrollbar-track { background: transparent; }
+.movies-scroll::-webkit-scrollbar-thumb { background: #ddd; border-radius: 4px; }

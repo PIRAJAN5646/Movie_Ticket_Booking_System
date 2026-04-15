@@ -1,8 +1,10 @@
-<div class="filters">
-  <button 
-    *ngFor="let c of categories"
-    [class.active]="c === selected"
-    (click)="selected = c">
-    {{c}}
-  </button>
+<div class="category-filter">
+  @for (cat of categories; track cat) {
+    <button
+      class="cat-btn"
+      [class.active]="selected === cat"
+      (click)="select(cat)">
+      {{ cat }}
+    </button>
+  }
 </div>
